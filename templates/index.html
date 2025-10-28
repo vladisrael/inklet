@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Inklet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+    </head>
+    <body>
+        <header>
+            <h1>
+                Inklet
+            </h1>
+        </header>
+        <img class="front-page-icon" src="{{ url_for('static', filename='icon.png') }}">
+        <p>
+            Markdown Paste Bin
+        </p>
+        <p>
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support me on Ko-fi', '#101010', 'G2G21F051Q');kofiwidget2.draw();</script>
+        </p>
+        <br>
+        <p>
+            <a href="/browse">Browse</a>
+        </p>
+    </body>
+</html>

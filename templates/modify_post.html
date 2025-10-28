@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Inklet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+    </head>
+    <body>
+        <header>
+            <h1>
+                Inklet
+            </h1>
+        </header>
+        <h2>{{ post_data.title }}</h2>
+        <p>
+            <a href="/">Index</a> | <a href="/browse">Browse</a> | <a href="/delete/{{ post_data.short_id }}">Remove</a>
+        </p>
+        <p>
+            <form method="POST">
+                <input style="width: 255ch;" maxlength="255" type="text" name="title" placeholder="Paste Title" value="{{ post_data.title }}" required>
+                <div id="editor">
+
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </p>
+        <br>
+    </body>
+    <script id="delta-data" type="application/json">
+        {{ post_data.content_delta | safe }}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const delta = JSON.parse(document.getElementById('delta-data').textContent);
+
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    [
+                        { header: [1, 2, false] }
+                    ],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'image', 'code-block'],
+                ],
+            },
+            placeholder: 'Compose a blog post..',
+            theme: 'snow',
+        });
+
+        quill.setContents({ ops: delta });
+
+        const form = document.querySelector('form');
+        form.addEventListener('formdata', (event) => {
+            event.formData.append('post_contents', JSON.stringify(quill.getContents().ops));
+        });
+
+    </script>
+</html>

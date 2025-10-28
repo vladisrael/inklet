@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Inklet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+    </head>
+    <body>
+        <header>
+            <h1>
+                Inklet
+            </h1>
+        </header>
+        <p>
+            <a href="/browse">Browse</a>
+        </p>
+        <p>
+            <form method="POST">
+                <input style="width: 255ch;" maxlength="255" type="text" name="title" placeholder="Paste Title" required>
+                <div id="editor">
+
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </p>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const quill = new Quill('#editor', {
+            modules: {
+                toolbar: [
+                    [
+                        { header: [1, 2, false] }
+                    ],
+                    ['bold', 'italic', 'underline'],
+                    ['link', 'image', 'code-block'],
+                ],
+            },
+            placeholder: 'Compose a blog post..',
+            theme: 'snow',
+        });
+
+        const form = document.querySelector('form');
+        form.addEventListener('formdata', (event) => {
+            event.formData.append('post_contents', JSON.stringify(quill.getContents().ops));
+        });
+    </script>
+</html>

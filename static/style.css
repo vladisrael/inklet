@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+html {
+    min-height: 100%;
+    height: max-content;
+}
+
+body {
+    color: white;
+    background: #020202;
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 300;
+    height: 100%;
+    text-align: center;
+    text-shadow: 3px 5px 8px #000000;
+    margin: 0;
+}
+
+strong {
+    font-weight: 400;
+}
+
+header {
+    background-color: midnightblue;
+    padding: 2ch;
+    margin: 0;
+}
+
+input, button, select {
+    margin-top: 4pt;
+    color: white;
+    background-color: #010101;
+    border: 1px solid #101010;
+    width: 14ch;
+    padding: 4pt;
+    font-family: "Roboto Condensed", sans-serif;
+    transition: 1s ease;
+}
+
+input:hover, button:hover, select:hover {
+    border-color: dodgerblue;
+}
+
+a {
+    color: whitesmoke;
+    text-decoration: none;
+    background-color: #010101;
+    border: 1px solid #101010;
+    padding: 4pt;
+    transition: 1s ease;
+}
+
+a:hover {
+    border-color: dodgerblue;
+}
+
+.front-page-icon {
+    width: 150pt;
+    height: 150pt;
+    margin-top: 15pt;
+}
+
+.ql-toolbar {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 15pt;
+}
+
+.browse-div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr));
+    justify-items: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 15pt;
+}
+
+.browse-item {
+    width: 50ch;
+    height: 4ch;
+    border: 1px solid #101010;
+    align-content: center;
+    color: white;
+    transition: 1s ease;
+    margin-bottom: 30pt;
+}
+
+.browse-item:hover {
+    border-color: dodgerblue;
+}
+
+.post-footer {
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 15pt;
+    border: 1px solid #101010;
+}
+
+#editor {
+    width: 60%;
+    height: 150pt;
+    margin: 0 auto;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+#viewer {
+    width: 60%;
+    min-height: 70vh;
+    height: max-content;
+    margin: 0 auto;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
+.ql-code-block-container {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 200;
+}
+
+.ql-editor h1, h2, p {
+    text-align: center;
+}
+
+.ql-editor.ql-blank::before {
+    color: lightgrey;
+}

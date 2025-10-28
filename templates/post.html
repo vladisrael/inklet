@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Inklet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+    </head>
+    <body>
+        <header>
+            <h1>
+                Inklet
+            </h1>
+        </header>
+        <h2>{{ post_data.title }}</h2>
+        <p>
+            <a href="/browse">Browse</a> | <a href="{{ url_for('modify_post', short_id=post_data.short_id) }}">Modify</a>
+        </p>
+        <div id="viewer">
+
+        </div>
+        <section class="post-footer">
+            <p>Posted at: {{ post_data.created_at }}</p>
+            <p>Modified at: {{ post_data.modified_at }}</p>
+        </section>
+        <br>
+    </body>
+    <script id="delta-data" type="application/json">
+        {{ post_data.content_delta | safe }}
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script>
+        const delta = JSON.parse(document.getElementById('delta-data').textContent);
+
+        const quill = new Quill('#viewer', {
+            theme: 'snow',
+            readOnly: true,
+            modules: { toolbar: false }
+        });
+
+        quill.setContents({ ops: delta });
+    </script>
+</html>

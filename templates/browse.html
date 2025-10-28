@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Inklet</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
+    </head>
+    <body>
+        <header>
+            <h1>
+                Inklet
+            </h1>
+        </header>
+        <p>
+            <a href="/">Index</a> | <a href="/submit">Submit</a>
+            <br>
+            <form method="POST">
+                <input style="width: 24ch;" type="search" name="search_query" placeholder="Search for..." required>
+                <button type="submit">Search</button>
+            </form>
+        </p>
+        <br>
+        <p>{{ board }}</p>
+        <br>
+        <div class="browse-div">
+            {% for post in posts %}
+                <a class="browse-item" href="/post/{{ post.short_id }}">{{ post.title }}</a>
+            {% else %}
+                <p>Nothing to show...</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>
